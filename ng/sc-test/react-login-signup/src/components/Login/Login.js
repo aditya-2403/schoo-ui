@@ -2,9 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import './Login.css'
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
-import scologo from '../../assets/scologo.svg'
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../../../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import scologo from '../../../assets/scologo.svg'
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -52,7 +53,7 @@ const Login = () => {
         >
         Log in
       </Button>
-      <p>Dont have an Account ? <a href="#">Sign Up Now!</a> </p>
+      <p>Dont have an Account ? <Link to="/signup">Sign Up Now!</Link> </p>
     </form>
     </div>
    </>
