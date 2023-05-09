@@ -1,0 +1,49 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">Start Session</h3>
+            <p class="title-description bottom-seperator">This starts a session for an Org Class.</p>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="form-title">
+            <h3 class="title-block">Please enter New Session Details below:</h3>
+        </div>
+        <div class="container form-container">
+            <form  autocomplete="off" novalidate [formGroup]="startSessionForm">
+             <app-org-course [parentForm]="startSessionForm"></app-org-course>
+               <div class="row">
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Start Date</mat-label>
+                            <input matInput [matDatepicker]="picker" placeholder="eg: 2019-06-12" [min]="minDate" formControlName="sessionStartDate" (click)="picker.open()" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="errorHandling('sessionStartDate', 'required')">Package Name is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>End Date</mat-label>
+                            <input matInput [matDatepicker]="picker1" placeholder="eg: 2020-06-12" [min]="minDate" formControlName="sessionEndDate" (click)="picker.open()" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                            <mat-error *ngIf="errorHandling('sessionEndDate', 'required')">Package Name is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                      <mat-card-actions>
+                        <div class="button-inline">
+                          <button type="submit" mat-raised-button color="primary" [disabled]="startSessionForm.invalid" (click)="submitSession()">Start Session</button>
+                         <!--  <button type="button" mat-raised-button color="warn" (click)="cancelSession()">Cancel</button> -->
+                        </div>
+                      </mat-card-actions>
+                    </div>
+                  </div>
+                  
+            </form>
+        </div>
+    </div>
+</div>

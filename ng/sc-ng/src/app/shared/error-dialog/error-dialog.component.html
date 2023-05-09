@@ -1,0 +1,41 @@
+<ng-container *ngIf="data.type=='error'">
+  <section fxLayout="column" fxLayoutAlign="center center">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <mat-dialog-content>
+      <p>{{data.message}}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button *ngIf="data?.primaryButtonName" mat-raised-button color="warn"
+        (click)="closeDialog()">{{data.primaryButtonName}}</button>
+    </mat-dialog-actions>
+  </section>
+</ng-container>
+
+<ng-container *ngIf="data.type=='confirm'">
+  <section fxLayout="column" fxLayoutAlign="center center">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <mat-dialog-content>
+      <p>{{data.message}}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button *ngIf="data?.primaryButtonName" mat-raised-button color="warn"
+        (click)="closeDialog()">{{data.primaryButtonName}}</button>
+      <button *ngIf="data?.secondaryButtonName" mat-button [mat-dialog-close]="data.secondaryButtonName"
+        cdkFocusInitial>Ok</button>
+    </mat-dialog-actions>
+  </section>
+</ng-container>
+
+<ng-container *ngIf="data.type=='deleteGridData'">
+  <section fxLayout="column">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <mat-dialog-content>
+      <p [innerHTML]="data.message"></p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button *ngIf="data?.secondaryButtonName"  mat-raised-button color="warn" (click)="closeDialog()">{{data.secondaryButtonName}}</button>
+      <button *ngIf="data?.primaryButtonName" color="primary" mat-raised-button [mat-dialog-close]="data.primaryButtonName"
+        cdkFocusInitial>{{data.primaryButtonName}}</button>
+    </mat-dialog-actions>
+  </section>
+</ng-container>

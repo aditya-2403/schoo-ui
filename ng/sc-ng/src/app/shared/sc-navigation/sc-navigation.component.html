@@ -1,0 +1,65 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer fixedInViewport
+  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  [opened]="(isHandset$ | async) === false">
+  <mat-toolbar class="docs-navbar-header"color="primary"><img src="assets/cms-logo-white.svg" width="90" height="90"></mat-toolbar>
+    <mat-nav-list>
+      <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+<mat-sidenav-content class="app-navbar">
+  <mat-toolbar color="primary" class="docs-navbar-header">
+    <mat-toolbar-row >
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>      
+      <span class="flex-spacer"></span>
+      <div *ngIf="!(isHandset$ | async)" class="header-menu">
+        <a mat-button [routerLink]="'/sc/dashboard'" routerLinkActive="active" > <mat-icon>dashboard</mat-icon> Dashboard  </a>
+        <a mat-button [routerLink]="'/sc/user'" routerLinkActive="active" > <mat-icon>golf_course</mat-icon> User management</a>
+        <a mat-button [routerLink]="'/sc/course'" routerLinkActive="active"> <mat-icon>supervised_user_circle</mat-icon>Course Management </a>
+        <a mat-button [routerLink]="'/sc/test'" routerLinkActive="active"> <mat-icon>supervised_user_circle</mat-icon>Test Management </a>
+      </div>
+      <div *ngIf="(isHandset$ | async)" class="header-menu">
+        <a mat-button [routerLink]="'/sc/dashboard'" routerLinkActive="active" (click)="drawer.toggle()"  matTooltip="Dashboard" > <mat-icon>dashboard</mat-icon></a>
+        <a mat-button [routerLink]="'/sc/user'" routerLinkActive="active" (click)="drawer.toggle()"  matTooltip="User Manaegment" > <mat-icon>golf_course</mat-icon></a>
+        <a mat-button [routerLink]="'/sc/course'" routerLinkActive="active" (click)="drawer.toggle()" matTooltip="Course Management"> <mat-icon>supervised_user_circle</mat-icon></a>
+        <a mat-button [routerLink]="'/sc/test'" routerLinkActive="active" (click)="drawer.toggle()" matTooltip="Test Management"> <mat-icon>supervised_user_circle</mat-icon></a>
+      </div>
+        <div>
+          <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu  #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>people</mat-icon>
+              <span>Profile</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notification_important</mat-icon>
+              <span>Notification</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Settings</span>
+            </button>
+            <button mat-menu-item [routerLink]="['/login']">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+    </mat-toolbar-row>
+  </mat-toolbar>  
+  <router-outlet></router-outlet>
+  <div flex>
+    <app-app-footer></app-app-footer>
+  </div> 
+</mat-sidenav-content>
+</mat-sidenav-container>

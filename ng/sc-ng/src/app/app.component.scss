@@ -1,0 +1,50 @@
+.container-fluid{
+  .main-route-container{
+    padding-top: 209px;
+    .adv-var-panel{
+      padding: 0 !important;
+      margin: 10px 0;
+    }
+    select{
+      margin-top: 11px;
+    }
+    input,
+    button.pull-right{
+      margin-top: 10pc;
+
+    }
+    .default-white-bg-btn,
+    .btn{
+      margin-bottom: 10px;
+      font-size: 10px;
+    }
+    .btn-vertical-middle{
+      position: relative;
+    }
+    .sidebar.admin-sidebar{
+      top:209px
+    }
+    .page-title{
+      widows: 100px;
+      overflow: auto;
+      padding: 7px;
+      margin-top: 20px;
+      margin-left: -2px;
+      .row {
+        margin: 0;
+      }
+      .panel-content{
+        margin:0;
+      }
+
+    }
+
+  }
+
+
+
+}
+
+.spinner-margin{
+  margin: 0 10px;
+}

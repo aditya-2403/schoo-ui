@@ -1,0 +1,98 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">Add Student Package</h3>
+            <p class="title-description bottom-seperator">Student Packages for Online Selling</p>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="form-title">
+            <h3 class="title-block">Please enter Package Details below:</h3>
+        </div>
+        <div class="container form-container">
+            <form autocomplete="off" novalidate [formGroup]="studPackageForm" (ngSubmit)="submitFormData()">
+                <div class="row">
+                    <div class="col">
+                        <mat-label class="inline-form-lable">Learning Mode</mat-label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-radio-group aria-label="Select an option"  name="accesslevel" required formControlName="learningMode">
+                            <mat-radio-button value="Self">Self</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <mat-radio-button value="Classroom">Classroom</mat-radio-button>
+                        </mat-radio-group>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm">
+                        <mat-form-field>
+                            <mat-label>Package Name</mat-label>
+                            <input matInput type="text" placeholder="eg: Analyzer" required formControlName="packageName">
+                            <mat-hint align="end">Not more then 200 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('packageName', 'maxlength')">You have more than 200 characters</mat-error>
+                            <mat-error *ngIf="errorHandling('packageName', 'required')">Package Name is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 col-sm">
+                        <mat-form-field>
+                            <mat-label>Package Goal</mat-label>
+                            <input matInput type="text" placeholder="eg: IIT-JEE" required formControlName="packageGoal">
+                            <mat-hint align="end">Not more then 200 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('packageGoal', 'maxlength')">You have more than 200 characters</mat-error>
+                            <mat-error *ngIf="errorHandling('packageGoal', 'required')">Package Goal is required</mat-error>
+                        </mat-form-field>
+                        
+                    </div>
+                    <div class="col-md-4 col-sm">
+                        <mat-form-field>
+                            <mat-label>Package Fees</mat-label>
+                            <input matInput type="text" placeholder="eg: 4000 (Numeric Ony)" required formControlName="packageFees">
+                            <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('packageFees', 'maxlength')">You have more than 10 characters</mat-error>
+                            <mat-error *ngIf="errorHandling('packageFees', 'required')">Package Fees is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                 <app-org-course [parentForm]="studPackageForm"></app-org-course>
+               <!--  <div class="row">
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Organization</mat-label>
+                            <mat-select matNativeControl required formControlName="orgID"
+                              aria-placeholder="Select a Organization">
+                              <mat-option [value]="'ORG30062018653'">School Connect Online</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('orgID', 'required')">Organization is required</mat-error>
+                        </mat-form-field>
+                        
+                    </div>
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Course/Class</mat-label>
+                            <mat-select matNativeControl required formControlName="courseID"
+                              aria-placeholder="Select a Course/Class">
+                              <mat-option [value]="'COR120420183585'">Class 9th</mat-option>
+                              <mat-option [value]="'COR120420187369'">Class 10th</mat-option>
+                              <mat-option [value]="'COR120420182678'">Class 12th</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('courseID', 'required')">Course/Class is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div> -->
+               
+                <div class="row">
+                    <div class="col">
+                        <ckeditor #editor [editor]="Editor" [data]="packageDescription" (ready)="onReady($event)"></ckeditor>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                      <mat-card-actions>
+                        <div class="button-inline">
+                          <button type="submit" mat-raised-button color="primary" >Add Package</button>
+                          <!-- <button type="button" mat-raised-button color="warn" >Cancel</button> -->
+                        </div>
+                      </mat-card-actions>
+                    </div>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">{{!chapterId ? 'Add' : 'Edit'}} Chapter</h3>
+            <p class="title-description bottom-seperator">eg: Mole Concept 1 etc..</p>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="form-title">
+            <h3 class="title-block">Please enter Chapter Details below:</h3>
+        </div>
+        <div class="container form-container">
+            <form autocomplete="off" novalidate [formGroup]="addChapterForm" (ngSubmit)="addChapter()">
+                <div class="row">
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Course to List Topics</mat-label>
+                            <mat-select matNativeControl required 
+                                aria-placeholder="Select an Course" formControlName="courseId" (selectionChange)="changeCourse($event)">
+                                <mat-option *ngFor="let item of courseList" [value]="item.courseID">{{item.courseName}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('courseId', 'required')">Course Name is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Subject to List Topics</mat-label>
+                            <mat-select matNativeControl required 
+                                aria-placeholder="Select an Subject" formControlName="subjectId">
+                                <mat-option *ngFor="let item of subjectList" [value]="item.subjectID">{{item.subjectName}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('subjectId', 'required')">Subject Name is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-xs">
+                        <mat-form-field>
+                            <mat-label>Chapter Name</mat-label>
+                            <input matInput type="text" placeholder="eg: Algebra" formControlName="chapterName">
+                            <mat-hint align="end">Not more then 200 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('chapterName', 'required')">Chapter Name is required
+                            </mat-error>
+                            <mat-error *ngIf="errorHandling('chapterName', 'maxlength')">You have more than 200 characters
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-xs">
+                        <mat-form-field>
+                            <mat-label>Chapter Code</mat-label>
+                            <input matInput type="text" placeholder="eg: 6" formControlName="chapterNumber">
+                            <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('chapterNumber', 'required')">Chapter Code is required
+                            </mat-error>
+                            <mat-error *ngIf="errorHandling('chapterNumber', 'maxlength')">You have more than 10 characters
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="row m-tb-8">
+                    <div class="col">
+                        <mat-label>Chapter Content(For Page)</mat-label>
+                        <ckeditor #editor [editor]="Editor" (ready)="onReady($event)"></ckeditor>
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col">
+                        <mat-card-actions>
+                            <div class="button-inline">
+                                <button type="submit" mat-raised-button color="primary">{{!chapterId ? 'Add' : 'Update'}} Chapter</button>
+                            </div>
+                        </mat-card-actions>
+                    </div>
+                </div>
+
+            </form>            
+        </div>
+    </div>
+</div>

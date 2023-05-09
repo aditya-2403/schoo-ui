@@ -1,0 +1,54 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">Orgnization Course & Subject Mapping</h3>
+            <p class="title-description bottom-seperator">Map an Org to a Course and then to its subject at the same
+                time</p>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="form-title">
+            <h3 class="title-block">Please Select Course and then shift Subject from Left List to Right List:
+            </h3>
+            <span class="badge badge-primary">Org: {{orgName}}</span> &nbsp;&nbsp;
+            <span class="badge badge-success">Plan: {{planName}}</span> &nbsp;&nbsp;
+            <span class="badge badge-danger">List: {{limts}}</span>
+        </div>
+        <div class="container form-container">
+            <form autocomplete="off" novalidate [formGroup]="CourseMappingForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select a Course:</mat-label>
+                            <mat-select matNativeControl required aria-placeholder="Select a Course:"
+                                formControlName="courseListDropdown" (selectionChange)="changeCourse($event)">
+                                <mat-option *ngFor="let item of courseListData" [value]="item">
+                                    {{item.courseName}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('courseListDropdown', 'required')">Course is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <app-drag-and-drop 
+                    [sourceList]="notMappedSubjectList" 
+                    [targetList]="mappedSubjectList"
+                    [draggableElmCount] = "subjectDragableLimit"
+                    [sourcePropertyName]="'subjectName'"
+                    [targetPropertyName]="'subjectName'"
+                    [sourceListHeading]="'Subjects Not Mapped'"
+                    [targetListHeading]="'Subjects Already Mapped'">
+                </app-drag-and-drop>
+                <div class="row">
+                        <div class="col">
+                          <mat-card-actions>
+                            <div class="button-inline">
+                              <button type="submit" mat-raised-button color="primary" (click)="updateMapping()">Update Mapping</button>
+                              <button type="button" mat-raised-button color="warn" (click)="cancelButtonEvent()">Cancel</button>
+                            </div>
+                          </mat-card-actions>
+                        </div>
+                      </div>
+            </form>
+        </div>
+    </div>
+</div>

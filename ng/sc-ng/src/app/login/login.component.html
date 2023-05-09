@@ -1,0 +1,29 @@
+<div class="page-title align-login">
+  <section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <h1 class="brand-logo"><img mat-card-image src="assets/cms-logo.svg" ></h1>
+      <mat-card-title >Please enter your credential</mat-card-title>
+      <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="submit(loginForm.value)"
+        fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput type="email" placeholder="Your email address" formControlName="username" id="username">
+            <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('username', 'required')">Username is required</mat-error>
+            <mat-error *ngIf="hasError('username', 'maxlength')">You have more than 60 characters</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="Your password" formControlName="password">
+            <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('password', 'required')">Password is required</mat-error>
+            <mat-error *ngIf="hasError('password', 'maxlength')">You have more than 60 characters</mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions align="center">
+          <button mat-raised-button color="primary">Login</button>
+          <!-- <button type="button" mat-raised-button color="warn"  (click)="onCancel()">Cancel</button> -->
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </section>
+</div>

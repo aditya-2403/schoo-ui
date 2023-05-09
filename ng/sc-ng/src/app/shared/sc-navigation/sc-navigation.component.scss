@@ -1,0 +1,69 @@
+@import '../breakpoints';
+@import '../theme';
+@import '../variable';
+.mat-sidenav {
+  width: 262px;
+}
+
+.sidenav-toolbar {
+  height: $header-height;
+  background-color: mat-color($app-primary);
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 600px) {
+    height: 56px;
+  }
+}
+.mat-nav-list {
+  padding-top: 30;
+}
+@include breakpoint-max(600px) {
+  .fixed-topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100% !important;
+  }
+
+  .mat-drawer-container,
+  .mat-drawer {
+    padding-top: 56px;
+  }
+}
+.menu-list-item.mat-list-item {
+  .mat-list-item-content {
+    flex: 1 1 100%;
+  }
+}
+// .version-info {
+//   font-size: 8pt;
+//   padding: 8px;
+//   align-self: flex-end;
+// }
+
+.docs-navbar-header[_ngcontent-c1] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+}
+
+.flex-spacer[_ngcontent-c1] {
+  flex-grow: 1;
+}
+
+.flex, .flex-grow {
+  -webkit-box-flex: 1;
+  box-sizing: border-box;
+}

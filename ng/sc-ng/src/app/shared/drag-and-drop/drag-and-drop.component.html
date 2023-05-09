@@ -1,0 +1,29 @@
+<div class="drag-and-drop-container">
+  <h2>{{srcListHeading}}</h2>
+
+  <div
+    cdkDropList
+    #sourceListRef="cdkDropList"
+    [cdkDropListData]="srcList"
+    [cdkDropListConnectedTo]="[targetListRef]"
+    class="drag-and-drop-list"
+    (cdkDropListDropped)="drop($event)"
+    id="srcListId">
+    <div class="drag-and-drop-box" *ngFor="let item of srcList" cdkDrag>{{item[sourcePropertyName]}}</div>
+  </div>
+</div>
+
+<div class="drag-and-drop-container">
+  <h2>{{trgListHeading}}</h2>
+
+  <div
+    cdkDropList
+    #targetListRef="cdkDropList"
+    [cdkDropListData]="trgList"
+    [cdkDropListConnectedTo]="[sourceListRef]"
+    class="drag-and-drop-list"
+    (cdkDropListDropped)="drop($event)" 
+    id="trgListId">
+    <div class="drag-and-drop-box" *ngFor="let item of trgList" cdkDrag>{{item[targetPropertyName]}}</div>
+  </div>
+</div>

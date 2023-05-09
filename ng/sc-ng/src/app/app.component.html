@@ -1,0 +1,11 @@
+<div layout="row" layout-xs="row">
+  <div flex>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="timer" [fullScreen]="true">
+      <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+    <router-outlet></router-outlet>
+  </div>
+  <div flex>
+    <app-footer></app-footer>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">Manage Course</h3>
+            <p class="title-description bottom-seperator">You can Edit/Delete Courses from here</p>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="form-title">
+            <h3 class="title-block">Find All Course Details below:</h3>
+        </div>
+        <div class="container">
+            <app-data-grid [dataGridConfig]="gridConfig" (gridActionEvent)="gridActionEvent($event)"></app-data-grid>                
+        </div>
+    </div>
+</div>

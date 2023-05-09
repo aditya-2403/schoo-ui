@@ -1,0 +1,34 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">Manage Teacher</h3>
+            <p class="title-description bottom-seperator">You can Edit/Delete Teacher from here</p>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="form-title">
+            <h3 class="title-block">Find All Teacher Details below:</h3>
+        </div>
+        <div class="container form-container">
+            <form autocomplete="off" novalidate>
+                <div class="row">
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Organization to List Teachers</mat-label>
+                            <mat-select matNativeControl required [formControl]="teacherOrgDropdown"
+                                aria-placeholder="Select an Organization" (selectionChange)="changeOrganication($event)">
+                                <mat-option *ngFor= "let item of orgListData" [value]="item">{{item.orgname}}</mat-option>
+                            </mat-select>
+                           <!--  <mat-error *ngIf="errorHandling('teacherOrgDropdown', 'required')">Organization field is required</mat-error> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+            <ng-container *ngIf="isGridShow">
+                <app-data-grid [dataGridConfig]="gridConfig" (gridActionEvent)="gridActionEvent($event)">
+                </app-data-grid>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

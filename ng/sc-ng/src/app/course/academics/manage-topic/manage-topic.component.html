@@ -1,0 +1,45 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">Manage Topics</h3>
+            <p class="title-description bottom-seperator">You can Edit/Delete Topics from here</p>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="form-title">
+            <h3 class="title-block">Find All Subject & Chapter-wise Topics Details below:</h3>
+        </div>
+        <div class="container form-container">
+            <form [formGroup]="manageTopicForm">
+                <div class="row">
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Course to List Topics</mat-label>
+                            <mat-select matNativeControl required
+                                aria-placeholder="Select an Course" formControlName="courseId"
+                                (selectionChange)="changeCourse($event)">
+                                <mat-option *ngFor="let item of courseList" [value]="item">{{item.courseName}}</mat-option>
+                            </mat-select>
+                            
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Subject to List Topics</mat-label>
+                            <mat-select matNativeControl required
+                                aria-placeholder="Select an Subject" formControlName="subjectId"
+                                (selectionChange)="changeSubject($event)">
+                                <mat-option *ngFor="let item of subjectList" [value]="item">{{item.subjectName}}</mat-option>
+                            </mat-select>
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form> 
+            
+            <ng-container *ngIf="isGridShow">
+                <app-data-grid [dataGridConfig]="gridConfig" (gridActionEvent)="gridActionEvent($event)"></app-data-grid>
+            </ng-container>
+        </div>
+    </div>
+</div>

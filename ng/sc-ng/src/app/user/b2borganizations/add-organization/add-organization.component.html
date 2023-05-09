@@ -1,0 +1,171 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="title-block">
+      <h3 class="page-title">{{isEditMode ? 'Update' : 'Add'}} Organization</h3>
+      <p class="title-description bottom-seperator">eg: School, Institute, PrepTopper and so on.. </p>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="form-title">
+      <h3 class="title-block">Please enter Organization Details below: </h3>
+    </div>
+    <div class="container form-container">
+      <form [formGroup]="orgForm" autocomplete="off" novalidate (ngSubmit)="createOwner(orgForm.value)">
+        <div class="row">
+          <div class="col">
+              <mat-label class="inline-form-lable">Select access level:</mat-label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-radio-group aria-label="Select an option" formControlName="accessLevel" name="accesslevel">
+                <mat-radio-button value="Public">Public</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-radio-button value="Private">Private</mat-radio-button>
+              </mat-radio-group>        
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs">
+            <mat-form-field>
+              <mat-label>Organization Name:</mat-label>
+              <input matInput type="text" placeholder="eg: MediEngg" formControlName="orgname"
+                id="organizationName">
+              <mat-hint align="end">Not more then 1000 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('orgname', 'required')">Organization Name is required</mat-error>
+              <mat-error *ngIf="hasError('orgname', 'maxlength')">You have more than 1000 characters</mat-error>
+            </mat-form-field>
+
+          </div>
+          <div class="col-sm-6 col-xs">
+            <mat-form-field>
+              <mat-label>Organization Short Name:</mat-label>
+              <input matInput type="text" placeholder="eg: MediEngg" formControlName="orgShortName" id="shortName">
+              <mat-hint align="end">Not more then 50 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('orgShortName', 'required')">Organization Shortname is required</mat-error>
+              <mat-error *ngIf="hasError('orgShortName', 'maxlength')">You have more than 50 characters</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs">
+            <mat-form-field>
+              <mat-label>Organization SLUG:</mat-label>
+              <input matInput type="text" placeholder="eg: mediengg (Small Letters)" formControlName="orgSlug" id="slug">
+              <mat-hint align="end">Not more then 50 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('orgSlug', 'required')">Organization SLUG is required</mat-error>
+              <mat-error *ngIf="hasError('orgSlug', 'maxlength')">You have more than 50 characters</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6 col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Organization Type</mat-label>
+              <mat-select matNativeControl required formControlName="orgType"
+                aria-placeholder="Select a Org Type">
+                <mat-option [value]="'School'">School</mat-option>
+                <mat-option [value]="'Coaching'">Coaching</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs">
+            <mat-label>Organization Logo:</mat-label>
+            <app-material-file-upload 
+            [target]="'/organizations/uploadOrgLogo'" 
+            [text]="'Choose File'"
+            (complete)="onFileComplete($event)"
+            [uploadedFileUrl] = "this.editableOrgData['signedUrl']"></app-material-file-upload>
+          </div>
+          <div class="col-sm-6 col-xs">
+            <mat-form-field>
+              <mat-label>Organization Contact Person:</mat-label>
+              <input matInput type="text" placeholder="eg: Gulshan Aara" formControlName="orgContactName"
+                id="contactPerson">
+              <mat-hint align="end">Not more then 100 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('orgContactName', 'required')">Organization Contact Person is required
+              </mat-error>
+              <mat-error *ngIf="hasError('orgContactName', 'maxlength')">You have more than 100 characters</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs">
+            <mat-form-field>
+              <mat-label>Organization Mobile:</mat-label>
+              <input matInput type="text" placeholder="eg: 10-digit Mobile Number" formControlName="orgcontactNumber"
+                id="mobileNumber">
+              <mat-hint align="end">Not more then 50 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('orgcontactNumber', 'required')">Organization Mobile is required</mat-error>
+              <mat-error *ngIf="hasError('orgcontactNumber', 'maxlength')">You have more than 50 characters</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6 col-xs">
+            <mat-form-field>
+              <mat-label>Organization Email:</mat-label>
+              <input matInput type="text" placeholder="Email ID" formControlName="orgemail" id="email">
+              <mat-hint align="end">Not more then 200 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('orgemail', 'required')">Organization Email is required</mat-error>
+              <mat-error *ngIf="hasError('orgemail', 'maxlength')">You have more than 200 characters</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs">
+            <mat-form-field>
+              <mat-label>Organization Website:</mat-label>
+              <input matInput type="text" placeholder="eg: www.abcd.com" formControlName="orgwebsite" id="website">
+              <mat-hint align="end">Not more then 200 characters long</mat-hint>
+              <mat-error *ngIf="hasError('orgwebsite', 'required')">Organization Website is required</mat-error>
+              <mat-error *ngIf="hasError('orgwebsite', 'maxlength')">You have more than 200 characters</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6 col-xs">
+            <mat-form-field class="textarea-width">
+              <mat-label>Organization Address:</mat-label>
+              <textarea matInput placeholder="Address" formControlName="orgaddress" id="address">
+                </textarea>
+              <mat-hint align="end">Not more then 2000 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('orgaddress', 'required')">Organization Address is required</mat-error>
+              <mat-error *ngIf="hasError('orgaddress', 'maxlength')">You have more than 2000 characters</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>State</mat-label>
+              <mat-select matNativeControl required formControlName="stateID" aria-placeholder="Select a State"
+              (selectionChange)="onStateChangeHandler($event.value)">
+                <mat-option *ngFor="let state of states" [value]="state.stateID">
+                  {{state.statename}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6 col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>City</mat-label>
+              <mat-select matNativeControl required formControlName="cityID" aria-placeholder="Select a City">
+                <mat-option *ngFor="let city of cities" [value]="city.cityID">
+                  {{city.cityname}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-checkbox formControlName="isApproved" value="">Publish/Activate Organization</mat-checkbox>&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-checkbox formControlName="isCreateLogin" value="true">Create Login ID</mat-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-card-actions>
+              <div class="button-inline">
+                <button type="submit" mat-raised-button color="primary" >{{isEditMode ? 'Update' : 'Add'}} Organization</button>
+                <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+              </div>
+            </mat-card-actions>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

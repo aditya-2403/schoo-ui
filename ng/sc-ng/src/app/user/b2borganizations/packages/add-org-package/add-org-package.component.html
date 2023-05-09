@@ -1,0 +1,181 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">{{!editableOrgPkgData['orgPackageID'] ? 'Add' : 'Edit'}} Org Packages</h3>
+            <p class="title-description bottom-seperator">Pricing Packages that govern the limitations of an org.</p>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="form-title">
+            <h3 class="title-block">Please enter Package Details below:</h3>
+        </div>
+        <div class="container form-container">
+            <form autocomplete="off" novalidate [formGroup]="orgPackageForm" (ngSubmit)="submitFormData()">
+                <div class="row">
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Package Type</mat-label>
+                            <mat-select matNativeControl required formControlName="orgPackageFor"
+                              aria-placeholder="Select a Type of Package">
+                              <mat-option [value]="'School'">School</mat-option>
+                              <mat-option [value]="'Coaching'">Coaching</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('orgPackageFor', 'required')">Package Type is required</mat-error>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 col-xs">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-xs">
+                        <mat-form-field>
+                            <mat-label>Package Name</mat-label>
+                            <input matInput type="text" placeholder="eg: Starter" formControlName="orgPackageName" required>
+                            <mat-hint align="end">Not more then 200 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('orgPackageName', 'required')">Package Name field is required</mat-error>
+                            <mat-error *ngIf="errorHandling('orgPackageName', 'maxlength')">You have more than 200 characters</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 col-xs">
+                        <mat-label>Package Icon</mat-label>
+                        <app-material-file-upload 
+                        [target]="'/package/uploadIcon'" 
+                        [text]="'Choose File'"
+                        (complete)="onFileComplete($event)"
+                        [uploadedFileUrl] = "packageIconUrl"></app-material-file-upload>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Subjects</mat-label>
+                            <mat-select matNativeControl required  formControlName="orgPackageNumSubjects"
+                              aria-placeholder="Select a Value">
+                              <mat-option [value]="'1'">1</mat-option>
+                              <mat-option [value]="'2'">2</mat-option>
+                              <mat-option [value]="'3'">3</mat-option>
+                              <mat-option [value]="'4'">4</mat-option>
+                              <mat-option [value]="'5'">5</mat-option>
+                              <mat-option [value]="'6'">6</mat-option>
+                              <mat-option [value]="'7'">7</mat-option>
+                              <mat-option [value]="'8'">8</mat-option>
+                              <mat-option [value]="'9'">9</mat-option>
+                              <mat-option [value]="'-1'">All (No Limits)</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('orgPackageNumSubjects', 'required')">Subject field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 col-sm">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Courses/Classes</mat-label>
+                            <mat-select matNativeControl required formControlName="orgPackageNumCourses"
+                              aria-placeholder="Select a Value">
+                              <mat-option [value]="'1'">1</mat-option>
+                              <mat-option [value]="'2'">2</mat-option>
+                              <mat-option [value]="'3'">3</mat-option>
+                              <mat-option [value]="'4'">4</mat-option>
+                              <mat-option [value]="'5'">5</mat-option>
+                              <mat-option [value]="'6'">6</mat-option>
+                              <mat-option [value]="'7'">7</mat-option>
+                              <mat-option [value]="'8'">8</mat-option>
+                              <mat-option [value]="'9'">9</mat-option>
+                              <mat-option [value]="'-1'">All (No Limits)</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('orgPackageNumCourses', 'required')">Courses/Classes field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 col-sm">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Exams</mat-label>
+                            <mat-select matNativeControl required formControlName="orgPackageNumExams"
+                              aria-placeholder="Select a Value">
+                              <mat-option [value]="'1'">1</mat-option>
+                              <mat-option [value]="'2'">2</mat-option>
+                              <mat-option [value]="'3'">3</mat-option>
+                              <mat-option [value]="'4'">4</mat-option>
+                              <mat-option [value]="'5'">5</mat-option>
+                              <mat-option [value]="'6'">6</mat-option>
+                              <mat-option [value]="'7'">7</mat-option>
+                              <mat-option [value]="'8'">8</mat-option>
+                              <mat-option [value]="'9'">9</mat-option>
+                              <mat-option [value]="'-1'">All (No Limits)</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errorHandling('orgPackageNumExams', 'required')">Exam field is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm">
+                        <mat-form-field>
+                            <mat-label>Price Less than 500</mat-label>
+                            <input matInput type="text" placeholder="eg: 100 (Numeric Ony)" formControlName="priceUpto500" required>
+                            <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('priceUpto500', 'required')">Field is required</mat-error>
+                            <mat-error *ngIf="errorHandling('priceUpto500', 'maxlength')">You have more than 10 characters</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm">
+                        <mat-form-field>
+                            <mat-label>Price Less than 1000</mat-label>
+                            <input matInput type="text" placeholder="eg: 100 (Numeric Ony)" formControlName="priceUpto1000" required>
+                            <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('priceUpto1000', 'required')">Field is required</mat-error>
+                            <mat-error *ngIf="errorHandling('priceUpto1000', 'maxlength')">You have more than 10 characters</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm">
+                        <mat-form-field>
+                            <mat-label>Price Less than 1500</mat-label>
+                            <input matInput type="text" placeholder="eg: 100 (Numeric Ony)" formControlName="priceUpto1500" required>
+                            <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('priceUpto1500', 'required')">Field is required</mat-error>
+                            <mat-error *ngIf="errorHandling('priceUpto1500', 'maxlength')">You have more than 10 characters</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm">
+                        <mat-form-field>
+                            <mat-label>Price 1500+</mat-label>
+                            <input matInput type="text" placeholder="eg: 100 (Numeric Ony)" formControlName="priceAfter1500" required>
+                            <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+                            <mat-error *ngIf="errorHandling('priceAfter1500', 'required')">Field is required</mat-error>
+                            <mat-error *ngIf="errorHandling('priceAfter1500', 'maxlength')">You have more than 10 characters</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                       
+                          <mat-form-field class="example-chip-list">
+                            <mat-chip-list #chipList aria-label="Feature selection">
+                              <mat-chip  *ngFor="let feature of features" [selectable]="selectable"
+                                       [removable]="removable" (removed)="remove(feature)">
+                                {{feature.name}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                              </mat-chip>
+                              <input placeholder="Enter upto {{maxFeature}} Features (Press enter or comma to add one feature.)"
+                                     [matChipInputFor]="chipList"
+                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                     [matChipInputAddOnBlur]="addOnBlur"
+                                     (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                            <mat-hint align="start">eg: Payment Gateway
+                                , Any 1 Subject (....)
+                                , Any 1 Exam (....) etc...</mat-hint>
+                          </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                      <mat-card-actions>
+                        <div class="button-inline form-action-buttons">
+                          <button type="submit" mat-raised-button color="primary" >{{!editableOrgPkgData['orgPackageID'] ? 'Add' : 'Update'}} Package</button>
+                          <button type="button" mat-raised-button color="warn" (click)="cancelButtonEvent()">Cancel</button>
+                        </div>
+                      </mat-card-actions>
+                    </div>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>

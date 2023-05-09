@@ -1,0 +1,41 @@
+<div class="page-container">
+    <form [formGroup]="parentForm">
+        <div class="row">
+            <div class="col-sm-6 col-xs">
+                <mat-form-field appearance="fill">
+                    <mat-label>Organization</mat-label>
+                    <mat-select matNativeControl [required]="isRequiredOrgField"
+                        aria-placeholder="Select an Organization" formControlName="orgDropdown"
+                        (selectionChange)="changeOrganication($event)">
+                        <mat-option *ngFor="let item of organizationList" [value]="item">{{item.orgname}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngIf="errorHandling('orgdropdown', 'required')">Subject is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-xs">
+                <ng-container *ngIf="!isSection">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Course/Class</mat-label>
+                        <mat-select matNativeControl [required]="isRequiredCourseField"
+                            aria-placeholder="Select an Course/Class" formControlName="courseDropdown"
+                            (selectionChange)="changeCourse($event)">
+                            <mat-option *ngFor="let item of courseList" [value]="item">{{item.courseName}}</mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="errorHandling('courseDropdown', 'required')">Course/Class is required</mat-error> -->
+                    </mat-form-field>
+                </ng-container>
+                <ng-container *ngIf="isSection">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Section</mat-label>
+                        <mat-select matNativeControl [required]="isRequiredCourseField"
+                            aria-placeholder="Select an Section" formControlName="sectionDropdown"
+                            (selectionChange)="changeSection($event)">
+                            <mat-option *ngFor="let item of sectionList" [value]="item">{{item.sectionName}}</mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="errorHandling('sectionDropdown', 'required')">Section is required</mat-error> -->
+                    </mat-form-field>
+                </ng-container>
+            </div>
+        </div>
+    </form>
+</div>

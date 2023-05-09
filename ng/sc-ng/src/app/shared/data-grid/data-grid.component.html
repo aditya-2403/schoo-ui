@@ -1,0 +1,50 @@
+<div class="mat-elevation-z8" *ngIf="filtering">
+  <div class="filter-header">
+    <button *ngIf="isExportExcel" type="type" mat-raised-button color="primary" class="export-btn"
+    (click)="exporter.exportTable('xlsx', {fileName:'export-data', Props: {Author: 'School Connect'}})" >Excel</button>
+    <mat-form-field>
+      <mat-icon matPrefix class="search-input-icon">search</mat-icon>
+      <input matInput (keyup)="applyFilterOnGrid($event.target.value)" placeholder="Search">
+    </mat-form-field>
+   
+  </div>
+
+</div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter">
+
+      <ng-container matColumnDef="{{item.id}}" *ngFor="let item of columnList">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="item.isImageColumn ? true : false "
+          [class]="item.className">
+          {{item.name}} </th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="!item.isImageColumn && !item.isDateColumn">{{element[item.id]}}</span>
+          <img *ngIf="item.isImageColumn" [src]="element[item.id]" style="width: 70px; height: 70px;" />
+          <span *ngIf="item.isDateColumn">{{element[item.id] | date: 'dd/MM/yyyy'}}</span>
+        </td>
+      </ng-container>
+      <!--Action Column Mange here-->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-menu #appMenu="matMenu">
+            <ng-template matMenuContent let-name="name">
+              <button mat-menu-item *ngFor="let action of actionItems" (click)="applyAction(element, action)">
+                {{action}}</button>
+            </ng-template>
+          </mat-menu>
+          <button mat-icon-button [matMenuTriggerFor]="appMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div *ngIf="isNoDataFound && dataSource.data.length == 0" class="table-data-not-found">No record found</div>
+    <mat-paginator *ngIf="paginationConfig" [pageSize]="gridPageSize" [pageSizeOptions]="[10, 20, 30]"
+      showFirstLastButtons></mat-paginator>
+  </div>

@@ -1,0 +1,13 @@
+  <div class="page-container">
+    <div class="page-header">
+        <div class="title-block">
+            <h3 class="page-title">Manage Organization</h3>
+            <p class="title-description bottom-seperator">You can Edit/Delete Organizations from here</p>
+        </div>
+    </div>
+    <div class="page-content">
+       <div class="container">
+          <app-data-grid [dataGridConfig]="gridConfig" (gridActionEvent)="gridActionEvent($event)"></app-data-grid>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,256 @@
+.container-fluid{
+  .main-route-container{
+    padding-top: 209px;
+    .adv-var-panel{
+      padding: 0 !important;
+      margin: 10px 0;
+    }
+    select{
+      margin-top: 11px;
+    }
+    input,
+    button.pull-right{
+      margin-top: 10pc;
+
+    }
+    .default-white-bg-btn,
+    .btn{
+      margin-bottom: 10px;
+      font-size: 10px;
+    }
+    .btn-vertical-middle{
+      position: relative;
+    }
+    .sidebar.admin-sidebar{
+      top:209px
+    }
+    .page-title{
+      widows: 100px;
+      overflow: auto;
+      padding: 7px;
+      margin-top: 20px;
+      margin-left: -2px;
+      .row {
+        margin: 0;
+      }
+      .panel-content{
+        margin:0;
+      }
+
+    }
+
+  }
+
+
+
+}
+
+
+// School Connect Stylesheet
+// author: Jayprakash Manjhi - 19 Aug - 2020
+@import './app/shared/variable';
+
+//theme overwrite
+.mat-toolbar.mat-primary, .mat-raised-button.mat-primary{background: $brand-color;}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{border-color: $ripple-btn-color;}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background
+{background-color: $ripple-btn-color;}
+.mat-progress-bar-fill::after{  background-color: $brand-color;}
+.mat-button.mat-warn{color: $brand-color;}
+.mat-list-base .mat-list-item{font-size: 14px;}
+//Common
+body, html { margin: 0px; padding: 0px;height: 100%;overflow-x: hidden;background-color: $bg-background-color !important;}
+.mat-drawer-content{background-color: $bg-background-color !important;}
+ul,li {margin: 0px; padding: 0px;}
+.content-container{ width: 90%;}
+.page-container {padding: 16px 0;background: #fff;margin-top:2px;}
+.page-content{margin: 16px 0;}
+.page-header {
+  margin-top: 16px;
+.page-title{
+    font-size: 1.45rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-left: 16px;
+}}
+.title-description{
+  margin: 0;
+  padding: 0px 16px;
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #7e8e9f;
+}
+.bottom-seperator{
+  border-bottom: 2px solid $brand-color;;
+  padding-bottom: 8px;
+}
+
+.row{
+  &.row-gutter{
+    margin: 16px 0px;
+  }
+}
+
+.m-tb-8{margin-top: 8px; margin-bottom: 8px;}
+
+//Side navigation
+.mat-sidenav-container {
+  background-color: white !important;
+  height: calc(100vh - (#{$header-height} + #{$footer-height}));
+
+  .mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+//table
+table, .mat-table {
+  width: 100%;
+}
+.logo-column{
+  min-width: 96px;
+}
+.table-data-not-found {
+  padding: 8px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: $error-color;
+} 
+
+.badge{
+    padding: 8px;
+    font-weight: 500;
+}
+.filter-header{
+  margin: 2px 16px;
+  .export-btn{margin-right: 16px;}
+  .mat-form-field{
+    display: inline-block !important;
+  }
+}
+
+//form
+.form-container{ width: 90%;}
+.form-container .textarea-width{width: 100% !important;}
+.form-container .mat-form-field{display:block;}
+.form-title{margin: 16px 16px 16px 32px;}
+button:focus{border: none;outline: none;}
+.button-inline{margin: 8px 8px 8px 0px;}
+.button-inline button{margin-right: 16px;margin-bottom: 8px;}
+.form-action-buttons{margin-top: 32px;}
+.inline-form-lable{vertical-align: top;
+  display: inline-block;}
+  .form-title .title-block{
+    font-size: 1.1rem;
+    color: #4f5f6f;
+  }
+.upload-preview-img{
+    width: 70px;
+    height: auto;
+    max-height: 70px;
+}
+/** Remove arrow from number field */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.search-input-icon{vertical-align: middle;margin-right: 6px;color: $primary-color;font-size: 24px !important;}
+
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/** End */
+//Header
+.app-header{
+  a:hover{
+    color: #f0f3f6;
+  }
+  .right-block{ 
+    position: absolute;
+    right: 15px;
+  }
+  position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+}
+.file-list{
+  li{
+    list-style: none;
+  }
+}
+.header-menu a.active{
+  color: $menu-active-color;
+  border: 1px solid rgba(255, 193, 7, 0.39);
+  border-radius: 4px;
+}
+//footer
+.footer{
+  position: fixed;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $brand-color;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    height: $footer-height;
+    > p { margin: 0; padding: 0 8px; font-size: 12px;}
+}
+// Login
+.align-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - #{$footer-height});
+   
+  .brand-logo{
+    text-align: center;border-bottom: 2px solid $brand-color;
+    > img{
+      width: 70%;margin: 0 auto;
+    }
+  }
+  .mat-card{
+    min-width: 300px;
+    box-shadow: 1px 1px 1px -1px rgba(0, 0, 0, 0.2), 2px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 3px 3px rgba(0, 0, 0, 0.12);
+  }
+  .mat-card-title{ color: #999;font-size: 16px;font-weight: normal;text-transform: uppercase;text-align: center;margin: 36px auto 8px !important;}
+  .mat-card-content{width: 90%;margin: 0 auto;
+      .mat-form-field, .mat-form-field-wrapper{width: 100%;display: block;}    
+  }
+}
+
+// CKE Word Editor
+.ck-toolbar{
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.ck-editor__editable_inline {
+  min-height: 300px;
+  border: 1px solid #ccc !important;
+  border-top: none !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  margin-bottom: 16px;
+}
+// End
+
+//drag and drop
+.cdk-drop-list{
+  height: 350px;
+  overflow: auto !important;
+  .cdk-drag:last-child{
+    border-bottom: solid 1px #ccc !important;
+  }
+}
