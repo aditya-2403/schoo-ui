@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import scologo from '../../../assets/scologo.svg';
 import './Signup.css'
+import {Link} from 'react-router-dom'
 import {
   TextField,
   Button,
@@ -17,8 +19,8 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 const Signup = () => {
   const [values, setValues] = useState({
-    firstName: '',
-    lastName: '',
+    userName: '',
+    fullName: '',
     email: '',
     password: '',
     showPassword: false,
@@ -49,30 +51,32 @@ const Signup = () => {
   return (
     <div className="form">
     <form onSubmit={handleSubmit}>
+      <img className='mb-4' src={scologo} alt="scologo" />
+      <h2>Sign Up</h2>
       <TextField
         variant="outlined"
         margin="normal"
         required
         fullWidth
-        id="firstName"
-        label="First Name"
-        name="firstName"
-        autoComplete="fname"
+        id="userName"
+        label="User Name"
+        name="userName"
+        autoComplete="uname"
         autoFocus
-        value={values.firstName}
-        onChange={handleChange('firstName')}
+        value={values.userName}
+        onChange={handleChange('userName')}
       />
       <TextField
         variant="outlined"
         margin="normal"
         required
         fullWidth
-        id="lastName"
-        label="Last Name"
-        name="lastName"
-        autoComplete="lname"
+        id="fullName"
+        label="Full Name"
+        name="fullName"
+        autoComplete="fname"
         value={values.lastName}
-        onChange={handleChange('lastName')}
+        onChange={handleChange('fullName')}
       />
       <TextField
         variant="outlined"
@@ -124,6 +128,7 @@ const Signup = () => {
         />
       </FormGroup>
       <Button
+      className='mb-5'
         type="submit"
         fullWidth
         variant="contained"
@@ -132,6 +137,7 @@ const Signup = () => {
       >
         Sign Up
       </Button>
+      <p>Already Have an Account ? <Link to="/">Login</Link> </p>
     </form>
     </div>
   );

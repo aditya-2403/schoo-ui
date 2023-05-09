@@ -2,10 +2,9 @@ import React from 'react'
 import { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import './Login.css'
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../../../node_modules/bootstrap/dist/js/bootstrap.bundle";
-import scologo from '../../../assets/scologo.svg'
-import { Link } from 'react-router-dom';
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import scologo from '../../assets/scologo.svg'
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -16,12 +15,11 @@ const Login = () => {
     // Submit login form logic here
   };
   return (
-   <>
+ <>
    <div className="form">
 
      <form onSubmit={handleSubmit}>
-        <img className='mb-4' src={scologo} alt="" srcset="" />
-        <h2>Login</h2>
+        <img src={scologo} alt="" srcset="" />
       <TextField
         id="username"
         label="Username"
@@ -54,7 +52,7 @@ const Login = () => {
         >
         Log in
       </Button>
-      <p>Dont have an Account ? <Link to="/signup">Sign Up Now!</Link> </p>
+      <p>Dont have an Account ? <a href="#">Sign Up Now!</a> </p>
     </form>
     </div>
    </>
