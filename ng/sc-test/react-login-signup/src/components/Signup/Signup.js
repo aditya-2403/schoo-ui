@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import scologo from '../../../assets/scologo.svg';
-import './Signup.css'
-import {Link} from 'react-router-dom'
+import './Signup.css';
+import {Link} from 'react-router-dom';
 import {
   TextField,
   Button,
@@ -16,6 +16,7 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -26,6 +27,8 @@ const Signup = () => {
     showPassword: false,
     agreedToTerms: false,
   });
+
+  const [captchaValue, setCaptchaValue] = useState(null);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -46,7 +49,12 @@ const Signup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(values);
+    console.log(captchaValue);
   };
+
+  const handleCaptchaChange = (value) => {
+    setCaptchaValue(value);
+  }
 
   return (
     <div className="form">
@@ -115,7 +123,7 @@ const Signup = () => {
         <FormHelperText>Must be at least 8 characters long</FormHelperText>
       </FormControl>
       <FormGroup>
-        <FormControlLabel
+      <FormControlLabel
           control={
             <Checkbox
               checked={values.agreedToTerms}
@@ -127,6 +135,10 @@ const Signup = () => {
           label="I agree to the Terms of Service and Privacy Policy."
         />
       </FormGroup>
+      <ReCAPTCHA
+    sitekey="6LfSC_YlAAAAAEVINWZepBwmxF51K5oDWihracFD"
+  
+  />
       <Button
       className='mb-5'
         type="submit"
@@ -135,7 +147,7 @@ const Signup = () => {
         color="primary"
         disabled={!values.agreedToTerms}
       >
-        Sign Up
+           Sign Up
       </Button>
       <p>Already Have an Account ? <Link to="/">Login</Link> </p>
     </form>
